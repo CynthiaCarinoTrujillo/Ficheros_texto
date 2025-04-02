@@ -2,6 +2,7 @@ package Actividad10_4;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.IOException;
 
 /**
  *
@@ -9,7 +10,7 @@ import java.io.FileReader;
  */
 public class Principal {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         BufferedReader in = null;
 
         try {
@@ -19,13 +20,20 @@ public class Principal {
             double suma = 0;
             for (int contador = 0; contador < subcadenas.length; contador++) {
                 suma += Double.valueOf(subcadenas[contador]);
-
             }
-            System.out.println("Suma" + suma + "media " + suma/subcadenas.length);
+            
+            System.out.println("Suma " + suma + " media " + suma/subcadenas.length);
         }
             catch (IOException ex){
-                    
-             }
+                    System.out.println(ex.getMessage());
+             } finally {
+            if (in != null){
+                try {
+                    in.close();
+                } catch (IOException ex){
+                    System.out.println(ex.getMessage());
+                }
+            }
         }
     }
 }
